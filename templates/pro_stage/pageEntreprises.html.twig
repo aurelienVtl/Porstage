@@ -1,1 +1,15 @@
-<h1> Cette page affichera la liste des entreprises proposant un stage </h1>
+{% extends 'base.html.twig' %}
+
+{% block contenu %}
+
+<h2> liste des entreprises proposant un stage :  </h2>
+	<ul>
+		<li>
+			<a href="{{path('pro_stage_entreprise')}}"> leclerc </a>
+		</li>
+		<li>
+			<a href="{{path('pro_stage_entreprise')}}"> carouf </a>
+		</li>
+	</ul>
+
+{% endblock %}
