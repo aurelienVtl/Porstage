@@ -1,0 +1,14 @@
+[class=container-fluid]{
+	background-color : #dddddd;
+	text-align : center;
+}
+
+[class=row]{
+ text-allign: center;
+}
+h3{
+	padding: 10px;
+	display:inline-block;
+	border : 1px solid black;
+	border-radius : 50px;
+}
