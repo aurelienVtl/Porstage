@@ -36,49 +36,30 @@
 						</tr>
 					</thead>
 					<tbody>
+					{% for stage in listeStages %}
 						<tr class= "table-active">
+						
 							<td>
-								1
+								{{stage.id}}
 							</td>
 							<td>
-								Leclerc
+								{{stage.entreprise.nom}}
 							</td>
 							<td>
-								30 rue des potager
+								{{stage.entreprise.adresse}}
 							</td>
 							<td>
-								DUT infomartique
-							</td>
-						</tr>
-						<tr class="table-active">
-							<td>
-								2
+								bob
 							</td>
 							<td>
-								carouf
+							<a href={{path('pro_stage_stages' ,{ id:stage.id} )}}>
+								voir
+							</a>
 							</td>
-							<td>
-								chez didier
-							</td>
-							<td>
-								LPA
-							</td>
-						</tr>
-						<tr class="table-active">
-							<td>
-								3
-							</td>
-							<td>
-								auchan
-							</td>
-							<td>
-								chez momo
-							</td>
-							<td>
-								licence num
-							</td>
+							
 						</tr>
 					
+					{% endfor %}
 					</tbody>
 				</table>
 		</div>

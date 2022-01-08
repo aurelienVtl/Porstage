@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Stage;
 
 class ProStageController extends AbstractController
 {
@@ -13,9 +14,17 @@ class ProStageController extends AbstractController
      */
     public function index(): Response
     {
+		
+		//récupérer le repository
+		$repositoryStage = $this->getDoctrine()->getRepository(stage::class);
+		
+		//récuperer les donneés de la BD
+		$stages = $repositoryStage -> findAll();
+		
+		//envoi des données à la vue
         return $this->render('pro_stage/index.html.twig', [
-            'controller_name' => 'ProStageController',
-        ]);
+            'listeStages' => $stages]
+		);
     }
 	
 	/**
