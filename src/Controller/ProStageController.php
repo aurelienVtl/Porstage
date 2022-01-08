@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Stage;
+use App\Entity\Entreprise;
+use App\Entity\Formation;
 
 class ProStageController extends AbstractController
 {
@@ -28,33 +30,90 @@ class ProStageController extends AbstractController
     }
 	
 	/**
-     * @Route("/stages/{id}", name="pro_stage_stages")
+     * @Route("/stages/{id}", name="proStage_detailStage")
      */
 	public function afficherStages($id): Response
     {
-        return $this->render('pro_stage/pageStages.html.twig', [
-            'controller_name' => 'ProStageController', 'id' => $id
+		//récupérer le repository
+		$repositoryStage = $this->getDoctrine()->getRepository(stage::class);
+		
+		//récuperer les donneés de la BD
+		$stage = $repositoryStage -> find($id);
+		
+		//envoi des données à la vue
+        return $this->render('pro_stage/pageDetailsStage.html.twig', [
+            'stage' => $stage
         ]);
     }
 	
 
 	/**
-     * @Route("/formations", name="pro_stage_formations")
+     * @Route("/formations", name="proStage_formations")
      */
 	public function afficherFormations(): Response
     {
-        return $this->render('pro_stage/pageFormations.html.twig', [
-            'controller_name' => 'ProStageController',
+         //récupérer le repository
+		$repositoryFormations = $this->getDoctrine()->getRepository(Formation::class);
+			
+		//récuperer les donneés de la BD
+		$formations = $repositoryFormations -> findAll();
+		 return $this->render('pro_stage/pageFormations.html.twig', [
+			"listeFormations" => $formations
         ]);
     }
 	
 	/**
-     * @Route("/entreprises", name="pro_stage_entreprise")
+     * @Route("/entreprises", name="proStage_entreprises")
      */
 	public function afficherEntreprises(): Response
     {
-        return $this->render('pro_stage/pageEntreprises.html.twig', [
-            'controller_name' => 'ProStageController', 
+         //récupérer le repository
+		$repositoryEntreprise = $this->getDoctrine()->getRepository(entreprise::class);
+			
+		//récuperer les donneés de la BD
+		$entreprises = $repositoryEntreprise -> findAll();
+		 return $this->render('pro_stage/pageEntreprises.html.twig', [
+			"listeEntreprises" => $entreprises
         ]);
     }
+	
+	
+	/**
+     * @Route("/entrepriseStages/{id}", name="proStage_entrepriseStages")
+     */
+    public function entrepriseStages($id): Response
+    {
+        //recuperer le repository de l'entitée Stage
+        $repositoryStage=$this->getDoctrine()->getRepository(Stage::class);
+        //recuperer les ressources de l'entité Ressource
+
+        $stagesDeEnt = $repositoryStage->findBy(['entreprise'=>$id]); 
+        // renvoie tous les stage qui ont pour codeEntreprise l'id donner
+
+        return $this->render('pro_stage/pageEntrepriseStages.html.twig', [
+
+           'listeStages'=>$stagesDeEnt,
+        ]);
+	
+	}
+	
+	/**
+     * @Route("/formationStages/{id}", name="proStage_formationStages")
+     */
+    public function formationStages($id): Response
+    {
+        //recuperer le repository de l'entitée Stage
+        $repositoryStage=$this->getDoctrine()->getRepository(Stage::class);
+        //recuperer les ressources de l'entité Ressource
+
+        $stagesDeLaFormation = $repositoryStage->findBy(['formations'=>$id]); 
+        // renvoie tous les stage qui ont pour codeEntreprise l'id donner
+
+        return $this->render('pro_stage/pageStages.html.twig', [
+
+           'listeStages'=>$stagesDeEnt,
+        ]);
+	
+	}
+
 }

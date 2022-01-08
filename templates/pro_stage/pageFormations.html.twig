@@ -2,12 +2,11 @@
 {% block contenu %}
 <h2> liste des formations </h2>
 	<ul>
-		<li>
-			<a href="{{path('pro_stage_formations')}}"> DUT </a>
-		</li>
-		<li>
-			<a href="{{path('pro_stage_formations')}}"> Licence </a>
-		</li>
+		{% for formation in listeFormations %} 
+			<li>
+				<a href="{{path('proStage_formationStages',{id:formation.id})}}"> {{formation.nom}} </a>
+			</li>
+		{% endfor %}
 	</ul>
 	bonjour
 

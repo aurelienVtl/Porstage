@@ -4,12 +4,11 @@
 
 <h2> liste des entreprises proposant un stage :  </h2>
 	<ul>
+		{% for entreprise in  listeEntreprises %}
 		<li>
-			<a href="{{path('pro_stage_entreprise')}}"> leclerc </a>
+			<a href="{{path('proStage_entrepriseStages',{id:entreprise.id})}}"> {{entreprise.nom}} </a>
 		</li>
-		<li>
-			<a href="{{path('pro_stage_entreprise')}}"> carouf </a>
-		</li>
+		{% endfor %}
 	</ul>
 
 {% endblock %}

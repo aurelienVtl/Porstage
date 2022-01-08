@@ -68,10 +68,14 @@ class AppFixtures extends Fixture
 				// ajout liaison entre entrprise stage et formation
 				for($j=0 ; $j<$nbFormation ; $j++){
 					$stage->addFormation($tabFormationMelange[$j]);
+					$tabFormationMelange[$j]->addStage($stage);
+					$manager->persist($tabFormationMelange[$j] );
 				}
 				$stage->setEntreprise($ent);
 				$ent -> addStage($stage);
 				
+				
+				$manager->persist($ent );
 				$manager->persist($stage);
 
 			}

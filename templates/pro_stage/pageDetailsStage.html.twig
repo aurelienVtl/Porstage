@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+{% block contenu %}
+<h2></h2>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-3">
+			</div>
+			<div class="col-md-1">
+				<h4>
+					entreprise:  
+				</h4>
+			</div>
+			<div class="col-md-5">
+				{{ stage.entreprise.nom }}
+			</div>
+			<div class="col-md-3">
+			</div>
+		</div>
+		<div class="row">
+		<div class="col-md-3">
+		</div>
+		<div class="col-md-1">
+			<h4>
+				adresse  :  
+			</h4>
+		</div>
+		<div class="col-md-5">
+			{{ stage.entreprise.adresse }}
+		</div>
+		<div class="col-md-3">
+		</div>
+	</div>
+</div>
+
+{% endblock %}
