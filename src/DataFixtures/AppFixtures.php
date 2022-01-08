@@ -53,7 +53,11 @@ class AppFixtures extends Fixture
 		foreach	($tabEntreprise as $ent){
 			$nbStage = $faker->numberBetween($min = 1, $max = 5);
 			for($i = 0; $i < $nbStage ; $i++){
-				$numeroFormation = $faker->numberBetween($min = 0, $max = sizeof($tabFormation)-1);
+
+				$tabFormationMelange = $tabFormation;
+				shuffle($tabFormationMelange);
+				$nbFormation = $faker->numberBetween($min = 1, $max = sizeof($tabFormation));
+				
 				
 				//création du stage
 				$stage = new Stage();
@@ -62,7 +66,9 @@ class AppFixtures extends Fixture
 				$stage->setEmailContact($ent->getNom()."@".$faker->freeEmailDomain);
 				
 				// ajout liaison entre entrprise stage et formation
-				$stage->addFormation($tabFormation[$numeroFormation]);
+				for($j=0 ; $j<$nbFormation ; $j++){
+					$stage->addFormation($tabFormationMelange[$j]);
+				}
 				$stage->setEntreprise($ent);
 				$ent -> addStage($stage);
 				

@@ -32,6 +32,9 @@
 							<th>
 								formation
 							</th>
+							<th>
+								plus d'info
+							</th>
 							
 						</tr>
 					</thead>
@@ -49,7 +52,10 @@
 								{{stage.entreprise.adresse}}
 							</td>
 							<td>
-								bob
+								{% for uneFormation in stage.formations %}
+									{{uneFormation.nom}}
+									{% if
+								{% endfor %}
 							</td>
 							<td>
 							<a href={{path('pro_stage_stages' ,{ id:stage.id} )}}>
