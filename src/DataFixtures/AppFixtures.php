@@ -14,7 +14,8 @@ class AppFixtures extends Fixture
     {
        
 		$faker = \Faker\Factory::create('fr_FR');
-		$tabEntreprise[];
+		$fakerUs = \Faker\Factory::create();
+		$tabEntreprise = array();
 		//$stageRito1 = new Stage(
 		
 		for($i =0 ; $i < 5 ; $i = $i +1){
@@ -31,33 +32,46 @@ class AppFixtures extends Fixture
 			
 		}
 		
-		$tabFormation = array(
-			"DUT INFO" => "diplome universitaire et technologique informatique",
-			"DUT GEA" => "diplome universitaire et technologique gestion des entrprises et administration"
+		$tabNomFormation = array(
+			"DUT INFO" => "DUT informatique",
+			"DUT GEA" => "DUT gestion des entrprises et administration",
 			"LP LA" => "licence professionnelle programation avancée"
 		);
 		
-		
-		foreach($tabFormation as $nomCour => $nomLong){
+		$tabFormation = array();
+		foreach($tabNomFormation as $nomCour => $nomLong){
 			$formation = new Formation();
 			$formation->setNom($nomCour);
 			$formation->setNomComplet($nomLong);
-			$tabFormation[] = $entreprise;
+			$tabFormation[] = $formation;
 			$manager->persist($formation);
 		}
 		
 		
-		$manager->flush();
+		
 		
 		foreach	($tabEntreprise as $ent){
-			$nbStage = $faker->numberBetween($min = 1, $max =5);
+			$nbStage = $faker->numberBetween($min = 1, $max = 5);
 			for($i = 0; $i < $nbStage ; $i++){
-				$stage = new Stage();
-				$stage->setTitre($faker->jobTitle);
-				$stage->setMission($faker->sentence($nbWords = 30 , $variableNbWords = true));
-				$stage->setEmailContact("$ent->getNom()@gmail.com");
+				$numeroFormation = $faker->numberBetween($min = 0, $max = sizeof($tabFormation));
 				
+				//création du stage
+				$stage = new Stage();
+				$stage->setTitre($fakerUs->jobTitle);
+				$stage->setMission($faker->realText($maxNbChars = 25, $indexSize = 2));
+				$stage->setEmailContact("$ent->getNom()@.$faker->freeEmailDomain");
+				
+				// ajout liaison entre entrprise stage et formation
+				$stage->addFormation($tabFormation[$numeroFormation]);
+				$stage->setEntreprise($ent);
+				$ent -> addStage($stage);
+				
+				$manager->persist($stage);
+
 			}
-			
+		
+		}
+		
+		$manager-> flush();
     }
 }
