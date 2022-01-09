@@ -9,12 +9,18 @@
 
 <div class=""container-fluid"">
     <div class="row">
-		<p> Liste des stage proposés </p>
-	</div>
-	<div class="row">
-		<div class="col-md-2">
+	<div class="col-md-2">
 		</div>
 		<div class="col-md-8">
+			<h4> Liste des stage proposés : <h4>
+		</div>
+		<div class="col-md-2">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-1">
+		</div>
+		<div class="col-md-10">
 			
 			
 				<table class="table">
@@ -22,6 +28,9 @@
 						<tr>
 							<th>
 								#
+							</th>
+							<th>
+								nom du stage
 							</th>
 							<th>
 								entreprise
@@ -44,6 +53,9 @@
 						
 							<td>
 								{{stage.id}}
+							</td>
+							<td>
+								{{stage.titre}}
 							</td>
 							<td>
 								{{stage.entreprise.nom}}
@@ -69,7 +81,7 @@
 					</tbody>
 				</table>
 		</div>
-		<div class="col-md-2">
+		<div class="col-md-1">
 		</div>
 	</div>
 </div>

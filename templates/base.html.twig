@@ -38,33 +38,33 @@
 		<div id="tete">
 		   <!-- titre et logo -->
 		   <div class="row">
-				<div class="col-md-12">
+				<div class="col-md-12-titre">
 					<h3>
-						Porstage
+						Prostage
 					</h3>
 				</div>
 			</div>
+			<div class="row">
+				<div class="col-md-12-menu">
+					<ul class="nav justify-content-center">
+					  <li class="nav-item">
+						<a class="nav-link" href="{{path('accueil')}}">Accueil</a>
+					  </li>
+					  <li class="nav-item">
+						<a class="nav-link" href="{{path('proStage_entreprises')}}">entreprises </a>
+					  </li>
+					  <li class="nav-item">
+						<a class="nav-link" href="{{path('proStage_formations')}}">formations </a>
+					  </li>
+					</ul>
+				</div>
+			</div>
 			
-			<ul class="nav justify-content-center">
-			  <li class="nav-item">
-				<a class="nav-link" href="{{path('accueil')}}">Accueil</a>
-			  </li>
-			  <li class="nav-item">
-				<a class="nav-link" href="{{path('proStage_entreprises')}}">entreprises </a>
-			  </li>
-			  <li class="nav-item">
-				<a class="nav-link" href="{{path('proStage_formations')}}">formations </a>
-			  </li>
-			  <li class="nav-item">
-				<a class="nav-link disabled">Disabled</a>
-			  </li>
-			</ul>
-			<!--FILTRES -->
 			
 					
 		</div>
 	</div>
-		<!-- les  blocks-->
+		
 		{% block contenu %}
 		{% endblock %}
 	

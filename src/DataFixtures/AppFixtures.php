@@ -62,7 +62,7 @@ class AppFixtures extends Fixture
 				//création du stage
 				$stage = new Stage();
 				$stage->setTitre($faker->word);
-				$stage->setMission($faker->realText($maxNbChars = 25, $indexSize = 2));
+				$stage->setMission($faker->realText($maxNbChars = 200, $indexSize = 2));
 				$stage->setEmailContact($ent->getNom()."@".$faker->freeEmailDomain);
 				
 				// ajout liaison entre entrprise stage et formation

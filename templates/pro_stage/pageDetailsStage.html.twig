@@ -3,33 +3,60 @@
 <h2></h2>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-3">
-			</div>
-			<div class="col-md-1">
-				<h4>
-					entreprise:  
-				</h4>
-			</div>
-			<div class="col-md-5">
-				{{ stage.entreprise.nom }}
-			</div>
-			<div class="col-md-3">
+			<div class="col-md-12-titreStage">
+				<h4 id=titreStage> Details du stage : {{stage.titre}}</h4>
 			</div>
 		</div>
 		<div class="row">
-		<div class="col-md-3">
-		</div>
-		<div class="col-md-1">
-			<h4>
-				adresse  :  
-			</h4>
-		</div>
-		<div class="col-md-5">
-			{{ stage.entreprise.adresse }}
-		</div>
-		<div class="col-md-3">
+			<div class="col-md-12-contenuStage">
+				<div class=details>
+					<h5 class = detailsTitre >
+						entreprise:  	
+					</h5>
+					<p class=detailContenu>
+						{{ stage.entreprise.nom }}
+					<p>
+				</div>
+				<div class=details>
+					<h5 class = detailsTitre>
+						adresse:  	
+					</h5>
+					<p class=detailContenu>
+						{{ stage.entreprise.adresse }}
+					<p>
+				</div>
+				<div class=details>
+					<h5 class = detailsTitre>
+						email de contact:  	
+					</h5>
+					<p class=detailContenu>
+						{{ stage.emailContact }}
+					<p>
+				</div>
+				<div class=details>
+					<h5 class = detailsTitre>
+						formations acceptées:  	
+					</h5>
+					{% for uneFormation in stage.formations %}			
+						<p class=detailContenu>
+							{{uneFormation.nom}} / 		
+						<p>
+					{% endfor %}
+				</div>
+				<div class=details>
+					<h5 class = detailsTitre>
+						descriptif de la mission:  	
+					</h5>
+					<p class=detailContenuDescriptif>
+						{{ stage.mission }}
+					<p>
+				</div>
+			</div>
+			
 		</div>
 	</div>
+		
+	
 </div>
 
 {% endblock %}

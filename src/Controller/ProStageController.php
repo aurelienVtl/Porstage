@@ -81,7 +81,7 @@ class ProStageController extends AbstractController
 	/**
      * @Route("/entrepriseStages/{id}", name="proStage_entrepriseStages")
      */
-    public function entrepriseStages($id): Response
+    public function AfficherEntrepriseStages($id): Response
     {
         //recuperer le repository de l'entitée Stage
         $repositoryStage=$this->getDoctrine()->getRepository(Stage::class);
@@ -100,18 +100,18 @@ class ProStageController extends AbstractController
 	/**
      * @Route("/formationStages/{id}", name="proStage_formationStages")
      */
-    public function formationStages($id): Response
+    public function AfficherFormationStages($id): Response
     {
         //recuperer le repository de l'entitée Stage
-        $repositoryStage=$this->getDoctrine()->getRepository(Stage::class);
+        $repositoryFormation=$this->getDoctrine()->getRepository(Formation::class);
         //recuperer les ressources de l'entité Ressource
 
-        $stagesDeLaFormation = $repositoryStage->findBy(['formations'=>$id]); 
+        $laFormation = $repositoryFormation->find($id); 
         // renvoie tous les stage qui ont pour codeEntreprise l'id donner
 
-        return $this->render('pro_stage/pageStages.html.twig', [
+        return $this->render('pro_stage/pageFormationStages.html.twig', [
 
-           'listeStages'=>$stagesDeEnt,
+           'formation'=>$stagesDeLaFormation,
         ]);
 	
 	}

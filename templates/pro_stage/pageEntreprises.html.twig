@@ -2,13 +2,24 @@
 
 {% block contenu %}
 
-<h2> liste des entreprises proposant un stage :  </h2>
-	<ul>
-		{% for entreprise in  listeEntreprises %}
-		<li>
-			<a href="{{path('proStage_entrepriseStages',{id:entreprise.id})}}"> {{entreprise.nom}} </a>
-		</li>
-		{% endfor %}
-	</ul>
+	<div class="container-contenu">
+		<div class="row">
+			<div class="col-md-3">
+			</div>
+			<div class="col-md-6">
+				<h2> liste des entreprises proposant un stage :  </h2>
+				<ul>
+					{% for entreprise in  listeEntreprises %}
+					<li>
+						<a href="{{path('proStage_entrepriseStages',{id:entreprise.id})}}"> {{entreprise.nom}} </a>
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
+			<div class="col-md-3">
+			</div>
+		</div>
+	
+	</div>
 
 {% endblock %}
