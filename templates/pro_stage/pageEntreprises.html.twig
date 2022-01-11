@@ -4,19 +4,72 @@
 
 	<div class="container-contenu">
 		<div class="row">
-			<div class="col-md-3">
+		<div class="col-md-2">
+		</div>
+		<div class="col-md-8">
+			<h4> Liste des entreprises proposant des stages : <h4>
+		</div>
+		<div class="col-md-2">
+		</div>
+		</div>
+		<div class="row">
+			<div class="col-md-1">
 			</div>
-			<div class="col-md-6">
-				<h2> liste des entreprises proposant un stage :  </h2>
-				<ul>
+			<div class="col-md-10">
+
+				
+				<table class="table">
+				<thead>
+				<th>
+					#
+				</th>
+				<th>
+					nom
+				</th>
+				<th>
+					adresse
+				</th>
+				<th>
+					activité
+					
+				</th>
+				<th>
+					URL site
+				</th>
+				<th>
+					stages proposés
+				</th>
+				</thead>
+				<tbody>
 					{% for entreprise in  listeEntreprises %}
-					<li>
-						<a href="{{path('proStage_entrepriseStages',{id:entreprise.id})}}"> {{entreprise.nom}} </a>
-					</li>
+						<tr class= "table-active">
+							<td>
+								{{entreprise.id}}
+							</td>
+							<td>
+								{{entreprise.nom}}
+							</td>
+							<td>
+								{{entreprise.adresse}}
+							</td>
+							<td>
+								{{entreprise.activite}} 
+								
+							</td>
+							<td>
+								{{entreprise.urlSite}}
+							</td>
+							<td>
+							<a href={{path('proStage_entrepriseStages' ,{ id:entreprise.id} )}}>
+								voir
+							</a>
+							</td>
+						</tr>
 					{% endfor %}
-				</ul>
+					</tbody>
+				</table>
 			</div>
-			<div class="col-md-3">
+			<div class="col-md-1">
 			</div>
 		</div>
 	

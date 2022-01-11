@@ -2,54 +2,53 @@
 {% block contenu %}
 <h2></h2>
 	<div class="container-fluid">
-		<div class="row">
+		<div class="row-fluid">
 			<div class="col-md-12-titreStage">
-				<h4 id=titreStage> Details du stage : {{stage.titre}}</h4>
+				<h4 id=titreStage>Details du stage : {{stage.titre}}</h4>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-12-contenuStage">
 				<div class=details>
-					<h5 class = detailsTitre >
-						entreprise:  	
-					</h5>
-					<p class=detailContenu>
-						{{ stage.entreprise.nom }}
-					<p>
+					<dt>entreprise: </dt>
+					<dd>{{ stage.entreprise.nom }}</dd>
+					</br>
 				</div>
 				<div class=details>
-					<h5 class = detailsTitre>
-						adresse:  	
-					</h5>
-					<p class=detailContenu>
-						{{ stage.entreprise.adresse }}
-					<p>
+					<dt>adresse: </dt>
+					<dd>{{ stage.entreprise.adresse }}</dd>
+					</br>
 				</div>
 				<div class=details>
-					<h5 class = detailsTitre>
-						email de contact:  	
-					</h5>
-					<p class=detailContenu>
-						{{ stage.emailContact }}
-					<p>
+					<dt>activité: </dt>
+					<dd>{{ stage.entreprise.activite }}</dd>
+					</br>
 				</div>
 				<div class=details>
-					<h5 class = detailsTitre>
-						formations acceptées:  	
-					</h5>
+					<dt>contact: </dt>
+					<dd>{{ stage.emailContact }}</dd>
+					</br>
+				</div>
+				
+				<div class=details>
+					<dt> formations acceptées : </dt>
+					<dd>
 					{% for uneFormation in stage.formations %}			
-						<p class=detailContenu>
-							{{uneFormation.nom}} / 		
-						<p>
+						 {{uneFormation.nom}} /
 					{% endfor %}
+					</dd>
+					</br>
 				</div>
 				<div class=details>
-					<h5 class = detailsTitre>
-						descriptif de la mission:  	
-					</h5>
-					<p class=detailContenuDescriptif>
-						{{ stage.mission }}
-					<p>
+					<dt>lien du site: </dt>
+					<dd>{{ stage.entreprise.urlSite }}</dd>
+					</br>
+				</div>
+				
+					<dt> descriptif de la mission: </dt>
+				<div id=mission>
+					<dd>{{ stage.mission }}</dd>
+					</br>
 				</div>
 			</div>
 			

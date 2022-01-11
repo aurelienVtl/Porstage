@@ -18,7 +18,7 @@ class AppFixtures extends Fixture
 		$tabEntreprise = array();
 		//$stageRito1 = new Stage(
 		
-		for($i =0 ; $i < 5 ; $i = $i +1){
+		for($i =0 ; $i < 14 ; $i = $i +1){
 			$entreprise = new Entreprise();
 			$nomEnt = $faker -> company;
 			$entreprise->setNom($nomEnt);

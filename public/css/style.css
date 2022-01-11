@@ -25,12 +25,7 @@
 	padding-top:2%;
 }
 
- .details{
-	 margin-bottom:1%;
- }
 
-.detailTitre{
-}
 
 .detailContenu{
 	margin-bottom:1%;
@@ -59,11 +54,15 @@ p{
 	
 }
 
+#mission{
+	margin-left:22%;
+	margin-right:22%;
+	padding-right:3%;
+	padding-left:3%;
+	border : 1px solid black;
+	border-radius : 50px;
+}
+
 #titreStage{
 	margin-bottom:2%;
-}
-h4{
-	display:inline-block;
-	padding-right:3%;
-	padding-bottom:2%;
 }
