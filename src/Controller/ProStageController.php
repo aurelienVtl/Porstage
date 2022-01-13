@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Stage;
 use App\Entity\Entreprise;
 use App\Entity\Formation;
+use App\Repository\StageRepository;
 
 class ProStageController extends AbstractController
 {
@@ -32,8 +33,9 @@ class ProStageController extends AbstractController
 	/**
      * @Route("/stages/{id}", name="proStage_detailStage")
      */
-	public function afficherStages($id): Response
-    {
+	public function afficherStages(Stage $stage): Response
+    {	
+		/* 		Sans les dépendances 
 		//récupérer le repository
 		$repositoryStage = $this->getDoctrine()->getRepository(stage::class);
 		
@@ -41,6 +43,7 @@ class ProStageController extends AbstractController
 		$stage = $repositoryStage -> find($id);
 		
 		//envoi des données à la vue
+		*/
         return $this->render('pro_stage/pageDetailsStage.html.twig', [
             'stage' => $stage
         ]);
@@ -81,15 +84,19 @@ class ProStageController extends AbstractController
 	/**
      * @Route("/entrepriseStages/{id}", name="proStage_entrepriseStages")
      */
-    public function AfficherEntrepriseStages( $id): Response
+    public function AfficherEntrepriseStages(StageRepository $repositoryStage, $id): Response
     {
-        //recuperer le repository de l'entitée Stage
-        $repositoryStage=$this->getDoctrine()->getRepository(Stage::class);
-        //recuperer les ressources de l'entité Ressource
+		
+		/* 		Sans les dépendances 
+			//recuperer le repository de l'entitée Stage
+			$repositoryStage=$this->getDoctrine()->getRepository(Stage::class);
+			//recuperer les ressources de l'entité Ressource
 
-        $stagesDeEnt = $repositoryStage->findBy(['entreprise'=>$id]); 
-        // renvoie tous les stage qui ont pour codeEntreprise l'id donner
-
+			$stagesDeEnt = $repositoryStage->findBy(['entreprise'=>$id]); 
+			// renvoie tous les stage qui ont pour codeEntreprise l'id donner
+		*/
+		$stagesDeEnt = $repositoryStage->findBy(['entreprise'=>$id]); 
+		
         return $this->render('pro_stage/pageEntrepriseStages.html.twig', [
 
            'listeStages'=>$stagesDeEnt,
