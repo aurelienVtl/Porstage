@@ -82,9 +82,9 @@ class ProStageController extends AbstractController
 	
 	
 	/**
-     * @Route("/entrepriseStages/{id}", name="proStage_entrepriseStages")
+     * @Route("/entrepriseStages/{nom}", name="proStage_entrepriseStages")
      */
-    public function AfficherEntrepriseStages(StageRepository $repositoryStage, $id): Response
+    public function AfficherEntrepriseStages(StageRepository $repositoryStage, $nom): Response
     {
 		
 		/* 		Sans les dépendances 
@@ -95,33 +95,32 @@ class ProStageController extends AbstractController
 			$stagesDeEnt = $repositoryStage->findBy(['entreprise'=>$id]); 
 			// renvoie tous les stage qui ont pour codeEntreprise l'id donner
 		*/
-		$stagesDeEnt = $repositoryStage->findBy(['entreprise'=>$id]); 
+		$stagesDeEnt = $repositoryStage->findStagesDeLEntreprise($nom); 
 		
         return $this->render('pro_stage/pageEntrepriseStages.html.twig', [
 
-           'listeStages'=>$stagesDeEnt,
+           'listeStages'=>$stagesDeEnt, 'nomEnt'=>$nom,
         ]);
 	
 	}
 	
 	/**
-     * @Route("/formationStages/{id}", name="proStage_formationStages")
+     * @Route("/formationStages/{nom}", name="proStage_formationStages")
      */
-    public function AfficherFormationStages(Formation $formation): Response
+    public function AfficherFormationStages($nom): Response
     {
-        /* 		Sans les dépendances 
-		
+       
 		//recuperer le repository de l'entitée Stage
-        $repositoryFormation=$this->getDoctrine()->getRepository(Formation::class);
+        $repositoryStage=$this->getDoctrine()->getRepository(Stage::class);
         //recuperer les ressources de l'entité Ressource
-
-        $laFormation = $repositoryFormation->find($id); 
+ 
         // renvoie tous les stage qui ont pour codeEntreprise l'id donner
-		*/
 		
+		
+		$stagesDeForm = $repositoryStage->findStagesDeLaFormation($nom);
         return $this->render('pro_stage/pageFormationStages.html.twig', [
 
-           'formation'=>$formation,
+           'stages'=>$stagesDeForm,
         ]);
 	
 	}

@@ -9,7 +9,7 @@
 				<ul>
 					{% for formation in listeFormations %} 
 						<li>
-							<a href="{{path('proStage_formationStages',{id:formation.id})}}"> {{formation.nom}} </a>
+							<a href="{{path('proStage_formationStages',{nom:formation.nom})}}"> {{formation.nom}} </a>
 						</li>
 					{% endfor %}
 				</ul>
