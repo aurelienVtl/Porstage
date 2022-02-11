@@ -9,6 +9,12 @@ use App\Entity\Stage;
 use App\Entity\Entreprise;
 use App\Entity\Formation;
 use App\Repository\StageRepository;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\EntityManagerInterface;
 
 class ProStageController extends AbstractController
 {
@@ -129,7 +135,7 @@ class ProStageController extends AbstractController
 	/**
      * @Route("/ajouterUneEntreprise", name="proStage_ajoutEntreprises")
      */
-    public function AfficherFormulaireAjoutEntreprise(): Response
+    public function AfficherFormulaireAjoutEntreprise(Request $request,EntityManagerInterface $manager): Response
     {
        
 		//recuperer le repository de l'entitée Stage
@@ -139,11 +145,21 @@ class ProStageController extends AbstractController
         // renvoie tous les stage qui ont pour codeEntreprise l'id donner
 		
 		$formEnt = $this->createFormBuilder($ent)
-			->add('nom')
-			->add('adresse')
-			->add('activite')
-			->add('urlsite')
+			->add('nom',TextType::class,['attr' =>['placeholder' =>"nom de l'entreprise...."]])
+			->add('adresse', TextareaType::class,['attr' =>['placeholder' =>"30 rue des piaf"]])
+			->add('activite',TextType::class,['attr' =>['placeholder' =>"Informatique emnbarquée .."]])
+			->add('urlsite',UrlType::class,['attr' =>['placeholder' =>"http://symfony.com"]])
+			
 			->getForm();
+			
+		$formEnt->handleRequest($request);
+			
+		if($formEnt->isSubmitted()){
+			$manager->persist($ent);
+			$manager->flush();
+			
+			return $this->redirectToRoute('accueil');
+		}
 		
 	
 		$vueFormualaire = $formEnt -> createView();
