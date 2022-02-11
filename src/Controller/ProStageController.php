@@ -124,5 +124,34 @@ class ProStageController extends AbstractController
         ]);
 	
 	}
+	
+	
+	/**
+     * @Route("/ajouterUneEntreprise", name="proStage_ajoutEntreprises")
+     */
+    public function AfficherFormulaireAjoutEntreprise(): Response
+    {
+       
+		//recuperer le repository de l'entitée Stage
+        
+       $ent = new Entreprise();
+ 
+        // renvoie tous les stage qui ont pour codeEntreprise l'id donner
+		
+		$formEnt = $this->createFormBuilder($ent)
+			->add('nom')
+			->add('adresse')
+			->add('activite')
+			->add('urlsite')
+			->getForm();
+		
+	
+		$vueFormualaire = $formEnt -> createView();
+        return $this->render('pro_stage/pageAjoutEntreprises.html.twig', ['vueFormualaire'=>$vueFormualaire
+
+           
+        ]);
+	
+	}
 
 }

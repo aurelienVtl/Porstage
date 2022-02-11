@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block contenu %}
+<div class=""container-fluid"">
+    <h3> YO </h3>
+</div>
+{{ form_start(vueFormualaire) }}
+	{{ form_row(vueFormualaire.nom) }}
+	{{ form_row(vueFormualaire.adresse) }}
+	{{ form_row(vueFormualaire.activite) }}
+	{{ form_row(vueFormualaire.urlsite) }}
+{{ form_end(vueFormualaire) }}
+
+
+{% endblock %}
