@@ -163,7 +163,43 @@ class ProStageController extends AbstractController
 		
 	
 		$vueFormualaire = $formEnt -> createView();
-        return $this->render('pro_stage/pageAjoutEntreprises.html.twig', ['vueFormualaire'=>$vueFormualaire
+        return $this->render('pro_stage/pageAjoutModifEntreprise.html.twig', ['vueFormualaire'=>$vueFormualaire
+		, 'action'=>'ajouter'
+
+           
+        ]);
+	
+	}
+	
+	/**
+     * @Route("/modifierUneEntreprise/{id}", name="proStage_modifierEntreprises")
+     */
+    public function AfficherFormulaireModificationEntreprise(Request $request,EntityManagerInterface $manager, Entreprise $entreprise): Response
+    {
+       
+
+		
+		$formEnt = $this->createFormBuilder($entreprise)
+			->add('nom',TextType::class)
+			->add('adresse', TextareaType::class)
+			->add('activite',TextType::class)
+			->add('urlsite',UrlType::class)
+			
+			->getForm();
+			
+		$formEnt->handleRequest($request);
+			
+		if($formEnt->isSubmitted()){
+			$manager->persist($entreprise);
+			$manager->flush();
+			
+			return $this->redirectToRoute('accueil');
+		}
+		
+	
+		$vueFormualaire = $formEnt -> createView();
+        return $this->render('pro_stage/pageAjoutModifEntreprise.html.twig', ['vueFormualaire'=>$vueFormualaire ,
+			'action'=>'modifier'
 
            
         ]);

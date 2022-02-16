@@ -27,7 +27,9 @@
 	padding-top:2%;
 }
 
-
+#lienAjout{
+	text-align : right;
+}
 
 .detailContenu{
 	margin-bottom:1%;

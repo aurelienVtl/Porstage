@@ -1,7 +1,13 @@
 {% extends 'base.html.twig' %}
 {% block contenu %}
 <div class=""container-fluid"">
-    <h3> YO </h3>
+    <h3> 
+		{% if action == "ajouter" %}
+			ajouter une entreprise !
+		{% else %}
+			modifier une entreprise !
+		{% endif %}
+	</h3>
 </div>
 {{ form_start(vueFormualaire) }}
 	{{ form_row(vueFormualaire.nom) }}
