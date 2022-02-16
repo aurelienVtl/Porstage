@@ -11,9 +11,9 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-2">
+		<div class="col-md-1">
 		</div>
-		<div class="col-md-8">
+		<div class="col-md-10">
 			
 			
 				<table class="table">
@@ -21,6 +21,9 @@
 						<tr>
 							<th>
 								#
+							</th>
+							<th>
+								nom du stage
 							</th>
 							<th>
 								entreprise
@@ -44,6 +47,9 @@
 							<td>
 								{{stage.id}}
 							</td>
+							<th>
+								{{stage.titre}}
+							</th>
 							<td>
 								{{stage.entreprise.nom}}
 							</td>
@@ -53,7 +59,6 @@
 							<td>
 								{% for uneFormation in stage.formations %}
 									{{uneFormation.nom}} / 
-									
 								{% endfor %}
 							</td>
 							<td>
@@ -68,7 +73,7 @@
 					</tbody>
 				</table>
 		</div>
-		<div class="col-md-2">
+		<div class="col-md-1">
 		</div>
 	</div>
 </div>

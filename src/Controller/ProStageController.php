@@ -28,7 +28,7 @@ class ProStageController extends AbstractController
 		$repositoryStage = $this->getDoctrine()->getRepository(stage::class);
 		
 		//récuperer les donneés de la BD
-		$stages = $repositoryStage -> findAll();
+		$stages = $repositoryStage -> findToutLesStages();
 		
 		//envoi des données à la vue
         return $this->render('pro_stage/index.html.twig', [
@@ -172,7 +172,7 @@ class ProStageController extends AbstractController
 	}
 	
 	/**
-     * @Route("/modifierUneEntreprise/{id}", name="proStage_modifierEntreprises")
+     * @Route("/modifierUneEntreprise/{id}", name="proStage_modifierEntreprise")
      */
     public function AfficherFormulaireModificationEntreprise(Request $request,EntityManagerInterface $manager, Entreprise $entreprise): Response
     {

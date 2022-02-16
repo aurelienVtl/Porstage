@@ -41,6 +41,9 @@
 				<th>
 					stages proposés
 				</th>
+				<th>
+					modifier
+				</th>
 				</thead>
 				<tbody>
 					{% for entreprise in  listeEntreprises %}
@@ -62,9 +65,14 @@
 								{{entreprise.urlSite}}
 							</td>
 							<td>
-							<a href={{path('proStage_entrepriseStages' ,{ nom:entreprise.nom} )}}>
-								voir
-							</a>
+								<a href={{path('proStage_entrepriseStages' ,{ nom:entreprise.nom} )}}>
+									voir
+								</a>
+							</td>
+							<td>
+								<a href={{path('proStage_modifierEntreprise' ,{ id:entreprise.id} )}}>
+									modif
+								</a>
 							</td>
 						</tr>
 					{% endfor %}

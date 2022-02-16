@@ -31,6 +31,10 @@
 	text-align : right;
 }
 
+#boutonForm{
+	margin-top : 2%;
+}
+
 .detailContenu{
 	margin-bottom:1%;
 }

@@ -1,21 +1,29 @@
 {% extends 'base.html.twig' %}
 {% block contenu %}
-<div class=""container-fluid"">
-    <h3> 
-		{% if action == "ajouter" %}
-			ajouter une entreprise !
-		{% else %}
-			modifier une entreprise !
-		{% endif %}
-	</h3>
-</div>
-{{ form_start(vueFormualaire) }}
-	{{ form_row(vueFormualaire.nom) }}
-	{{ form_row(vueFormualaire.adresse) }}
-	{{ form_row(vueFormualaire.activite) }}
-	{{ form_row(vueFormualaire.urlsite) }}
-	<button type="submit" class="btn btn-dark"> Enregistrer </button>
-{{ form_end(vueFormualaire) }}
+	<div class=""container-fluid"">
+		<h3> 
+			{% if action == "ajouter" %}
+				ajouter une entreprise !
+			{% else %}
+				modifier une entreprise !
+			{% endif %}
+		</h3>
+	</div>
+	<div class="row">
+		<div class="col-md-2">
+		</div>
+		<div class="col-md-8">
+			{{ form_start(vueFormualaire) }}
+				{{ form_row(vueFormualaire.nom) }}
+				{{ form_row(vueFormualaire.adresse) }}
+				{{ form_row(vueFormualaire.activite) }}
+				{{ form_row(vueFormualaire.urlsite) }}
+				<button type="submit" class="btn btn-dark" id="boutonForm"> Enregistrer </button>
+			{{ form_end(vueFormualaire) }}
+		</div>
+		<div class="col-md-2">
+		</div>
+	</div>
 	
 
 {% endblock %}
