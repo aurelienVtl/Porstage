@@ -154,7 +154,7 @@ class ProStageController extends AbstractController
 			
 		$formEnt->handleRequest($request);
 			
-		if($formEnt->isSubmitted()){
+		if($formEnt->isSubmitted() && $formEnt->isValid() ){
 			$manager->persist($ent);
 			$manager->flush();
 			
@@ -189,7 +189,7 @@ class ProStageController extends AbstractController
 			
 		$formEnt->handleRequest($request);
 			
-		if($formEnt->isSubmitted()){
+		if($formEnt->isSubmitted() && $formEnt->isValid() ){
 			$manager->persist($entreprise);
 			$manager->flush();
 			

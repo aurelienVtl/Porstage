@@ -6,7 +6,7 @@ use App\Repository\EntrepriseRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass=EntrepriseRepository::class)
  */
@@ -21,21 +21,30 @@ class Entreprise
 
     /**
      * @ORM\Column(type="string", length=50)
+	 *	@Assert\NotBlank
+	 * 	@Assert\Length(
+	 *	max = 254,
+	 *  min = 4,
+	 *	minMessage = " Le tritre doit faire minimum {{ limit }} characteres",
+	 *	maxMessage = " Le titre doit faire max {{ limit }} characteres "
+	 * )
      */
     private $nom;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * 	@ORM\Column(type="string", length=255)
      */
     private $adresse;
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\NotBlank
      */
     private $activite;
 
     /**
      * @ORM\Column(type="string", length=150, nullable=true)
+	 * @Assert\Url
      */
     private $urlSite;
 
