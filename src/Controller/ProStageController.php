@@ -15,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Form\EntrepriseType;
 
 class ProStageController extends AbstractController
 {
@@ -144,13 +145,8 @@ class ProStageController extends AbstractController
  
         // renvoie tous les stage qui ont pour codeEntreprise l'id donner
 		
-		$formEnt = $this->createFormBuilder($ent)
-			->add('nom',TextType::class,['attr' =>['placeholder' =>"nom de l'entreprise...."]])
-			->add('adresse', TextareaType::class,['attr' =>['placeholder' =>"30 rue des piaf"]])
-			->add('activite',TextType::class,['attr' =>['placeholder' =>"Informatique emnbarquée .."]])
-			->add('urlsite',UrlType::class,['attr' =>['placeholder' =>"http://symfony.com"]])
+		$formEnt = $this->createForm(EntrepriseType::class, $ent);
 			
-			->getForm();
 			
 		$formEnt->handleRequest($request);
 			
@@ -179,13 +175,8 @@ class ProStageController extends AbstractController
        
 
 		
-		$formEnt = $this->createFormBuilder($entreprise)
-			->add('nom',TextType::class)
-			->add('adresse', TextareaType::class)
-			->add('activite',TextType::class)
-			->add('urlsite',UrlType::class)
+		$formEnt = $this->createForm(EntrepriseType::class, $entreprise);
 			
-			->getForm();
 			
 		$formEnt->handleRequest($request);
 			
@@ -203,7 +194,34 @@ class ProStageController extends AbstractController
 
            
         ]);
+	}
 	
+	/**
+     * @Route("/ajouterUnStage", name="proStage_ajoutStage")
+     */
+    public function AfficherFormulaireModificationEntreprise(Request $request,EntityManagerInterface $manager): Response
+    {
+		//recuperer le repository de l'entitée Stage
+        
+		$stage = new Stage();
+ 
+		$formStage = $this-> createForm(StageType::class, $stage);
+			
+			
+		$formStage->handleRequest($request);
+			
+		if($formStage->isSubmitted() && $formStage->isValid() ){
+			$manager->persist($stage);
+			$manager->flush();
+			
+			return $this->redirectToRoute('accueil');
+		}
+		
+	
+		$vueFormualaire = $formStage -> createView();
+        return $this->render('pro_stage/pageAjoutStage.html.twig', ['vueFormualaire'=>$vueFormualaire
+           
+        ]);
 	}
 
 }

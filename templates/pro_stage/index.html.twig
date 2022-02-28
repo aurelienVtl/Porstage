@@ -21,65 +21,67 @@
 		<div class="col-md-1">
 		</div>
 		<div class="col-md-10">
+			<div id = "lienAjout">
+				<a href="{{path('proStage_ajoutStage')}}"> ajouter un stage </a>
+			</div>
 			
-			
-				<table class="table">
-					<thead>
-						<tr>
-							<th>
-								#
-							</th>
-							<th>
-								nom du stage
-							</th>
-							<th>
-								entreprise
-							</th>
-							<th>
-								adresse
-							</th>
-							<th>
-								formation
-							</th>
-							<th>
-								plus d'info
-							</th>
-							
-						</tr>
-					</thead>
-					<tbody>
-					{% for stage in listeStages %}
-						<tr class= "table-active">
+			<table class="table">
+				<thead>
+					<tr>
+					<th>
+						#
+					</th>
+					<th>
+						nom du stage
+					</th>
+					<th>
+						entreprise
+					</th>
+					<th>
+						adresse
+					</th>
+					<th>
+						formation
+					</th>
+					<th>
+						plus d'info
+					</th>
 						
-							<td>
-								{{stage.id}}
-							</td>
-							<td>
-								{{stage.titre}}
-							</td>
-							<td>
-								{{stage.entreprise.nom}}
-							</td>
-							<td>
-								{{stage.entreprise.adresse}}
-							</td>
-							<td>
-								{% for uneFormation in stage.formations %}
-									{{uneFormation.nom}} / 
-									
-								{% endfor %}
-							</td>
-							<td>
-							<a href={{path('proStage_detailStage' ,{ id:stage.id} )}}>
-								voir
-							</a>
-							</td>
-							
-						</tr>
+					</tr>
+				</thead>
+				<tbody>
+				{% for stage in listeStages %}
+					<tr class= "table-active">
 					
-					{% endfor %}
-					</tbody>
-				</table>
+						<td>
+							{{stage.id}}
+						</td>
+						<td>
+							{{stage.titre}}
+						</td>
+						<td>
+							{{stage.entreprise.nom}}
+						</td>
+						<td>
+							{{stage.entreprise.adresse}}
+						</td>
+						<td>
+							{% for uneFormation in stage.formations %}
+								{{uneFormation.nom}} / 
+								
+							{% endfor %}
+						</td>
+						<td>
+						<a href={{path('proStage_detailStage' ,{ id:stage.id} )}}>
+							voir
+						</a>
+						</td>
+						
+					</tr>
+				
+				{% endfor %}
+				</tbody>
+			</table>
 		</div>
 		<div class="col-md-1">
 		</div>
