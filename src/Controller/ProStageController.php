@@ -16,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Form\EntrepriseType;
+use App\Form\StageType;
 
 class ProStageController extends AbstractController
 {
@@ -199,7 +200,7 @@ class ProStageController extends AbstractController
 	/**
      * @Route("/ajouterUnStage", name="proStage_ajoutStage")
      */
-    public function AfficherFormulaireModificationEntreprise(Request $request,EntityManagerInterface $manager): Response
+    public function AfficherFormulaireAjoutStage(Request $request,EntityManagerInterface $manager): Response
     {
 		//recuperer le repository de l'entitée Stage
         
