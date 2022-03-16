@@ -135,7 +135,7 @@ class ProStageController extends AbstractController
 	
 	
 	/**
-     * @Route("/ajouterUneEntreprise", name="proStage_ajoutEntreprises")
+     * @Route("/admin/ajouterUneEntreprise", name="proStage_ajoutEntreprises")
      */
     public function AfficherFormulaireAjoutEntreprise(Request $request,EntityManagerInterface $manager): Response
     {
@@ -198,7 +198,7 @@ class ProStageController extends AbstractController
 	}
 	
 	/**
-     * @Route("/admin/ajouterUnStage", name="proStage_ajoutStage")
+     * @Route("/ajouterUnStage", name="proStage_ajoutStage")
      */
     public function AfficherFormulaireAjoutStage(Request $request,EntityManagerInterface $manager): Response
     {
