@@ -20,7 +20,7 @@ class AppFixtures extends Fixture
 		$aurelien->setNom("Vantalon");
 		$aurelien->setUsername("avantalon");
 		$aurelien->setRoles(['ROLE_USER','ROLE_ADMIN']);
-		$aurelien->setPassword('$2y$10$5M.MLNJwMbllvM8PcZPFz.LROpOEPtCTIf3jACoYAE.vlvcnD2z7u');
+		$aurelien->setPassword('$2y$10$43Nr1xPp7T8WnCzKQeUHVeyAieEEiIuMjdy93KpEoWwMF7JnwzLFS');
 		$manager->persist($aurelien);
 		
 		
@@ -29,7 +29,7 @@ class AppFixtures extends Fixture
 		$jean->setNom("Lassale");
 		$jean->setUsername("jlassale");
 		$jean->setRoles(['ROLE_USER']);
-		$jean->setPassword('$2y$10$Z6M.HRiFuitxQ90xS9x5e.Wf7oUnlwKxW2rNYRSFUEFI6qQZ2Gn9e');
+		$jean->setPassword('$2y$10$myBUlZmZ4VHEYeEt2uZcMOKbaYumCcWLnxVpFsXETvX/NYSNjQzNa');
 		$manager->persist($jean);
 	   
 		$faker = \Faker\Factory::create('fr_FR');

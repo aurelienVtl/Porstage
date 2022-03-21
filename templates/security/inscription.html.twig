@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscrivez vous{% endblock %}
+
+{% block contenu %}
+
+    {{ form_start(vueFormualaire) }}
+		{{ form_row(vueFormualaire.prenom) }}
+		{{ form_row(vueFormualaire.nom) }}
+		{{ form_row(vueFormualaire.username) }}
+		{{ form_row(vueFormualaire.password) }}
+		<button type="submit" class="btn btn-dark" id="boutonForm"> Enregistrer </button>
+	{{ form_end(vueFormualaire) }}
+{% endblock %}

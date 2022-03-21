@@ -198,7 +198,7 @@ class ProStageController extends AbstractController
 	}
 	
 	/**
-     * @Route("/ajouterUnStage", name="proStage_ajoutStage")
+     * @Route("/user/ajouterUnStage", name="proStage_ajoutStage")
      */
     public function AfficherFormulaireAjoutStage(Request $request,EntityManagerInterface $manager): Response
     {
