@@ -6,7 +6,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
-use App/Form/UserType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use App\Form\UserType;
+use App\Entity\User;
+use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class SecurityController extends AbstractController
 {
@@ -15,9 +20,9 @@ class SecurityController extends AbstractController
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        // if ($this->getUser()) {
-        //     return $this->redirectToRoute('target_path');
-        // }
+         if ($this->getUser()) {
+             return $this->redirectToRoute('accueil');
+         }
 
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -28,15 +33,23 @@ class SecurityController extends AbstractController
     }
 
 
-
-    public function inscription(Request $request, ObjectManager $manager){
+	/**
+     * @Route("/inscription", name="app_register")
+     */
+    public function inscription(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder){
         //creer utilisateur
         $user = new User(); 
 
-        $formulaireUtilisateur = $this->createFrom(UserType::class,$user);
+        $formulaireUtilisateur = $this->createForm(UserType::class,$user);
         $formulaireUtilisateur->handleRequest($request);
         if($formulaireUtilisateur ->isSubmitted()&& $formulaireUtilisateur->isValid()){
-            return $this->redirectToRoute('proStage_accueil');
+			
+			$user->setRoles(['ROLE_USER']);
+            $encodagePassword = $encoder->encodePassword($user, $user->getPassword());
+            $user->setPassword($encodagePassword);
+			$manager->persist($user);
+			$manager->flush();
+            return $this->redirectToRoute('accueil');
         }
 
         return $this->render('security/inscription.html.twig', ['vueFormulaire' => $formulaireUtilisateur -> createView()]);
