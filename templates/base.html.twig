@@ -36,60 +36,52 @@
     <body>
 	<div class="container-fluid-titre">
 		<div id="tete">
-		   <!-- titre et logo -->
-		   <div class="row">
+			<div class="d-flex justify-content-end align-middle">
+				<div class="dropdown">
+					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+						Mon Compte
+					</button>
+					<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+					{% if is_granted('ROLE_USER') %}
+						<li><a class="dropdown-item" href="{{ path('app_logout') }}">déconnexion</a></li>
+					{% else %}
+						<li><a class="dropdown-item" href="{{ path('app_login') }}">connexion</a></li>
+					{% endif %}
+					</ul>
+				</div>	
+			</div>
+			<!-- titre et logo -->
+			<div class="row">
 				<div class="col-md-12-titre">
 					<div class=logo> 
 						<h3 class=rounded-circle> ProStage </h3>
 					</div>
-					<button
-					 href="{{ path('app_login') }}">Se déconnecter
-					 </button>
-					<!-- {% if is_granted('ROLE_USER') %} -->
-						<!-- <div class="dropdown"> -->
-						    <!-- <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
-								<!-- Dropdown link -->
-							<!-- </a> -->
-						  <!-- <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"> -->
-							<!-- <a class="dropdown-item" href="app_logout">Se déconnecter</a> -->
-						  <!-- </div> -->
-						<!-- </div> -->
-					<!-- {% else %} -->
-						<!-- <div class="dropdown"> -->
-							<!-- <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
-								<!-- Dropdown link -->
-							<!-- </a> -->
-						  <!-- <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"> -->
-							<!-- <a class="dropdown-item" href="app_login">se connecter</a> -->
-						  <!-- </div> -->
-						<!-- </div> -->
-					<!-- {% endif %} -->
+				</div>
 						
-				</div>
 			</div>
-			<div class="row">
-				<div class="col-md-12-menu">
-					<ul class="nav justify-content-center">
-					  <li class="nav-item">
-						<a class="nav-link" href="{{path('accueil')}}">Accueil</a>
-					  </li>
-					  <li class="nav-item">
-						<a class="nav-link" href="{{path('proStage_entreprises')}}">entreprises </a>
-					  </li>
-					  <li class="nav-item">
-						<a class="nav-link" href="{{path('proStage_formations')}}">formations </a>
-					  </li>
-					 
-					</ul>
-					
-				</div>
-			</div>
-			
-			
-					
 		</div>
+		<div class="row">
+			
+			<div class="col-md-12-menu">
+				<ul class="nav justify-content-center">
+					<li class="nav-item">
+						<a class="nav-link" href="{{path('accueil')}}">Accueil</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{path('proStage_entreprises')}}">entreprises </a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{path('proStage_formations')}}">formations </a>
+					</li>	
+					
+				</ul>
+			</div>
+		</div>	
 	</div>
-		
+			
+			
+					
+	
 		{% block contenu %}
 		{% endblock %}
 	
